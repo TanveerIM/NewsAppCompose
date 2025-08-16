@@ -2,6 +2,7 @@ package com.devindepth.newsappcompose.di
 
 import android.content.Context
 import com.devindepth.newsappcompose.NewsApp
+import com.devindepth.newsappcompose.data.web.NewsApi
 import com.devindepth.newsappcompose.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -47,5 +48,11 @@ class NetworkModule {
             .readTimeout(30L, TimeUnit.SECONDS)
             .writeTimeout(30L, TimeUnit.SECONDS)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideNewsApi(retrofit: Retrofit): NewsApi {
+        return retrofit.create(NewsApi::class.java)
     }
 }
